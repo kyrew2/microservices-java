@@ -2,10 +2,20 @@ package br.edu.pedro.greetingservice.controllers;
 
 import br.edu.pedro.greetingservice.configs.GreetingConfig;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+class Pessoa {
+    private String name;
+
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+}
 
 @RestController
 @RequestMapping("/greeting")
@@ -31,6 +41,19 @@ public class GreetingController {
         }
         String greetingReturn = String.format("%s %s!!!", config.getGreeting(), name);
         return greetingReturn;
+    }
+    // Entregavel
+    @GetMapping("/{name}")
+    public String getGreetingPath(@PathVariable String name){
+        String greetingPathReturn = String.format("%s, %s!!!", config.getGreeting(), name);
+        return greetingPathReturn;
 
     }
+
+    @PostMapping
+    public String postGreeting(@RequestBody Pessoa pessoa) {
+        String postGreetingReturn = String.format("%s, %s!!!", config.getGreeting(), pessoa.getName());
+        return postGreetingReturn;
+    }
+
 }
