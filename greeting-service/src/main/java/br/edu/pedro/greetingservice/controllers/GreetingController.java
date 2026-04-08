@@ -4,19 +4,6 @@ import br.edu.pedro.greetingservice.configs.GreetingConfig;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
-class Pessoa {
-    private String name;
-
-    public void setName(String name){
-        this.name = name;
-    }
-
-    public String getName(){
-        return name;
-    }
-
-}
-
 @RestController
 @RequestMapping("/greeting")
 public class GreetingController {
